@@ -1,5 +1,6 @@
-.env.local
+# testing of commenting
 .next
+.env.local
 .pnp.*
 .yarn/*
 !.yarn/patches
