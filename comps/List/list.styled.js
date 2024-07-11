@@ -41,7 +41,7 @@ export const Cell = styled.li`font-size: 20px; border: 2px solid black;
                     @media (max-width: 600px) {font-size: 18px;padding:3px;
                                                width:95%;height:385px;}
                     @media (max-width: 400px) {font-size: 20px;width:85%;height:360px;}`
-export const StyledImage = styled(Image)`margin:10px;height:100px;`
+export const StyledImage = styled(Image)`margin:10px;height:200px;width:200px;`
 export const TitleLink = styled(Link)`font-size: 22px;
                                       padding: 5px; border:1px solid black;
                          @media (max-width: 600px) {font-size: 18px;}`

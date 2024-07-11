@@ -93,7 +93,7 @@ return (<S.Container>
              <S.Cell  key={item._id}>
                <S.StyledImage alt='' src={item.photo&&item.photo.length
 				                         ?item.photo:'/next.svg'}
-                              width={150} height={100} priority={true}/><br/>
+                              width={0} height={0} priority={true}/><br/>
                <S.TitleLink href={`/${urlSingle}/${item._id}`}
 				            className='styledLink'>{item.title.slice(0, 12)}</S.TitleLink>
                <S.Parag>{t('category')}: {item.category?tc(item.category):'---'}</S.Parag>
@@ -101,7 +101,8 @@ return (<S.Container>
                <S.Parag>{t('price')}: {item.price}</S.Parag>
                
                <S.AddButt onClick={(e)=>handAdd(e,item)}>{t('add_butt')}
-               <AddCartIcon style={{position:'relative',top:'5px',fontSize:'25px'}}/></S.AddButt><br/>
+              {/*<AddCartIcon style={{position:'relative',top:'5px',fontSize:'25px'}}/>*/}
+              </S.AddButt><br/> 
                
                {(creator(item.creator)||admin)
 				   
