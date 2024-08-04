@@ -13,7 +13,8 @@ import {Russo_One} from 'next/font/google'
 
 import {notFound} from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
-import {unstable_setRequestLocale} from 'next-intl/server';
+import {unstable_setRequestLocale} from 'next-intl/server'
+import {Metadata} from 'next'
 
 const lora = Russo_One({ subsets: ['cyrillic'], weight: ['400'] })
 //~ import {useLocale} from 'next-intl'
@@ -25,7 +26,7 @@ export function generateStaticParams() {
 }
 //~ const lora = Lora({ subsets: ['latin'] })
 //~ const lora = Yeseva_One({subsets: ['cyrillic'], weight: '400' })
-export const metadata = {
+export const metadata : Metadata = {
   title: 'Flora Izyum',
   description: 'Unkeeees for sure',
   icons: {
