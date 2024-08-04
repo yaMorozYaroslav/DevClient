@@ -1,6 +1,13 @@
 import {List} from '../../../comps/List/List'
 import {Pages} from '../../../comps/Pages/Pages'
 //~ import { revalidateTag } from 'next/cache'
+import {Metadata} from 'next'
+
+export const metadata: Metadata = {
+	title: 'The best seeds in Izyum city',
+	description: 'Here you can buy totally unique facauio.',
+    metadataBase: new URL('https://flora-izyum.vercel.app/en/seed-list')
+	}
 
 async function anyName() {
   const allData = 
