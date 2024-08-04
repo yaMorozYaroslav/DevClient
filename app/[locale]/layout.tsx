@@ -28,7 +28,7 @@ export function generateStaticParams() {
 //~ const lora = Yeseva_One({subsets: ['cyrillic'], weight: '400' })
 export const metadata : Metadata = {
   title: 'Flora Izyum',
-  description: 'Unkeeees for sure',
+  description: 'Do not 12 13 14 15',
   icons: {
     icon: "/logo.png",
   },
