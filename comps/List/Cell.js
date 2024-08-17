@@ -6,7 +6,6 @@ export const Cell =({item, showOptions, creator,
 	                 admin, urlSingle, t, tc, tt})=> {
 
 const [options, setOptions] = React.useState(false) 
-
 return(<>
 <S.Cell  key={item._id} onMouseLeave={()=>setOptions(false)}>
                {!options && <S.StyledImage alt='' 

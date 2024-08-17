@@ -94,7 +94,7 @@ return (<S.Container>
           
           
          {shown.map(item => 
-			     <Cell item={item} open={open} showOptions={showOptions} 
+			     <Cell key={item._id} item={item} open={open} showOptions={showOptions} 
 			           creator={creator} urlSingle={urlSingle} 
 			           admin={admin} t={t} tc={tc} tt={tt}/>)}       
         </S.List>}
