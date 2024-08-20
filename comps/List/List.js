@@ -4,7 +4,6 @@ import * as S from './list.styled'
 import {AddForm} from './AddForm/AddForm'
 import {Filter} from './Filter/Filter'
 import Box from '@mui/material/Box';
-import AddCartIcon from '@mui/icons-material/AddShoppingCart';
 import OffIcon from '@mui/icons-material/HighlightOff';
 import EditIcon from '@mui/icons-material/Edit';
 //~ import LinearProgress from '@mui/material/LinearProgress';
@@ -21,7 +20,7 @@ import { usePathname } from '../../navigation'
 import { useRouter } from '../../navigation'
 import {useTranslations} from 'next-intl'
 
-import {Cell} from './Cell'
+import {Cell} from './Cell/Cell'
 
 export function List({servData}){
 	const t = useTranslations('List')
@@ -31,8 +30,6 @@ export function List({servData}){
 	const pathname = usePathname()
 	const router = useRouter()
 	const isSeed = pathname === '/seed-list'
-	
-	const urlSingle = isSeed?'seeds':'items'
 	
 	const [open, setOpen] = React.useState({form: false})
     const [shown, setShown] = React.useState(servData)
@@ -94,8 +91,9 @@ return (<S.Container>
           
           
          {shown.map(item => 
-			     <Cell key={item._id} item={item} open={open} showOptions={showOptions} 
-			           creator={creator} urlSingle={urlSingle} 
+			     <Cell key={item._id} onAdd={handAdd} item={item} 
+			           open={open} showOptions={showOptions} 
+			           creator={creator} isSeed={isSeed} 
 			           admin={admin} t={t} tc={tc} tt={tt}/>)}       
         </S.List>}
          {!shown.length&&<S.NoData>No products found for this request</S.NoData>}
