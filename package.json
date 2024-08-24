@@ -35,5 +35,6 @@
   },
   "devDependencies": {
     "yarn-upgrade-all": "^0.7.2"
-  }
+  },
+  "packageManager": "yarn@4.4.0"
 }
