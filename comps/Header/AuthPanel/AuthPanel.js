@@ -47,16 +47,13 @@ export function AuthPanel(){
 	     if(error)clearError() 
 			},[error])
    
-     
-   React.useEffect(()=>{
+     React.useEffect(()=>{
 	              let token
 	        	if(userData)token = userData.token
 	        	if(token){
 
 	        		const decodedToken = jwtDecode(token)
-                    //~ console.log(decodedToken)
-	        		//~ if(decodedToken.exp * 1000 < new Date().getTime()){
-	        		//~ if(decodedToken.exp * 999.998 < new Date().getTime()){
+                    
 	        		if(decodedToken.exp * 999.999 < new Date().getTime()){
 	        		 logout()
 	        		 removeProfile()
