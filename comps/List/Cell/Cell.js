@@ -3,6 +3,8 @@ import React from 'react'
 import * as S from './cell.styled'
 import AddCartIcon from '@mui/icons-material/AddShoppingCart';
 import SearchIcon from '@mui/icons-material/ContentPasteSearch';
+import OffIcon from '@mui/icons-material/HighlightOff';
+import EditIcon from '@mui/icons-material/Edit';
 
 export const Cell =({item, onAdd, showOptions, creator,
 	                 admin, isSeed, t, tc, tt})=> {
