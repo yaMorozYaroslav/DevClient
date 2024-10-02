@@ -1,11 +1,9 @@
 'use client'
 import React from 'react'
 import * as S from './list.styled'
-import {AddForm} from './AddForm/AddForm'
 import {Filter} from './Filter/Filter'
 import Box from '@mui/material/Box';
-import OffIcon from '@mui/icons-material/HighlightOff';
-import EditIcon from '@mui/icons-material/Edit';
+import {AddForm} from './AddForm/AddForm'
 //~ import LinearProgress from '@mui/material/LinearProgress';
 
 import {useItemContext} from '../../context/items/ItemState'
@@ -51,10 +49,12 @@ export function List({servData}){
 	const creator =(id)=> userData.user && (userData.user._id === id)
 	const admin = userData.user && userData.user.role === 'admin'
 	
+	
 	const handAdd =(e, s)=> {e.preventDefault();addToCart(s);}
 	
 	const handEdit =(e, s)=> {e.preventDefault(); 
 		                      setCurrItem(s);setOpen({...open, form: true})}
+		                      
     const onMenu = () => {router.push('/');if(isSeed){
 							            resetSeeds()}else{resetItems()}}
 	const showOptions =()=>{setOpen({...open, options: !open.options});}
@@ -77,25 +77,29 @@ return (<S.Container>
       <S.ListButts>
         <Filter/>
         {admin &&       
-			<S.AddAdmin onClick={()=>setOpen(true)}>
+			<S.AddAdmin onClick={()=>setOpen({...open, form: true})}>
 			                   {t('add_butt')}</S.AddAdmin>}
         <S.NotLink onClick={()=>onMenu()}>{t('menu')}</S.NotLink>
-      </S.ListButts>    
+      </S.ListButts> 
+         
        {open.form &&
 		     <AddForm setOpen={setOpen} 
 		              currItem={currItem}
 		              setCurrItem={setCurrItem}
 		               />}  
+		               
 	   {loading &&  <S.SpinCont><S.Spinner/></S.SpinCont>}
        {shown && shown.length>0 && !loading && <S.List>
           
           
          {shown.map(item => 
-			     <Cell key={item._id} onAdd={handAdd} item={item} 
-			           open={open} showOptions={showOptions} 
-			           creator={creator} isSeed={isSeed} 
-			           admin={admin} t={t} tc={tc} tt={tt}/>)}       
+		   <Cell key={item._id} item={item} open={open}
+			     showOptions={showOptions} creator={creator} 
+			     isSeed={isSeed} admin={admin} t={t} tc={tc} tt={tt} 
+			     handEdit={handEdit} handAdd={handAdd} delUnit={delUnit}/>)}       
         </S.List>}
+        
          {!shown.length&&<S.NoData>No products found for this request</S.NoData>}
+         
        </S.Container>)
 } 

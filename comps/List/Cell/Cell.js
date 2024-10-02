@@ -1,16 +1,18 @@
 'use client'
 import React from 'react'
 import * as S from './cell.styled'
+
 import AddCartIcon from '@mui/icons-material/AddShoppingCart';
 import SearchIcon from '@mui/icons-material/ContentPasteSearch';
 import OffIcon from '@mui/icons-material/HighlightOff';
 import EditIcon from '@mui/icons-material/Edit';
 
-export const Cell =({item, onAdd, showOptions, creator,
-	                 admin, isSeed, t, tc, tt})=> {
+export const Cell =({item, showOptions, creator, admin, isSeed,
+	                 t, tc, tt, open, handAdd, handEdit, delUnit})=> {
 
 const [options, setOptions] = React.useState(false)
-const urlSingle = isSeed?'seeds':'items'
+const urlSingle = isSeed?'seeds':'items'	
+
 
 return(<>
     <S.Cell  key={item._id} 
@@ -22,7 +24,7 @@ return(<>
 				                         onClick={()=>setOptions(true)}
                                          width={0} height={0} 
                                          priority={true}/>  }
-      {options && <S.StyledButtons>
+      {options && <><S.StyledButtons>
 				   
 				            
 	     <S.DetailsLink className='styledLink'
@@ -36,22 +38,15 @@ return(<>
 	          
 	     </S.DetailsLink>
 				             
-		 <S.AddButt onClick={(e)=>onAdd(e,item)}>{t('add_butt')}
+		 <S.AddButt onClick={(e)=>handAdd(e,item)}>{t('add_butt')}
               <AddCartIcon style={{position:'relative',
 				                   top:'5px',fontSize:'25px'}}/>
          </S.AddButt>
-				  </S.StyledButtons>}
-            <br/>                   
-               <S.Title>{item.title.slice(0,12)}</S.Title>
-               <S.Parag>{t('category')}: {item.category?tc(item.category):'---'}</S.Parag>
-               <S.Parag>{t('type')}: {item.type?tt(item.type):'---'}</S.Parag>
-               <S.Parag>{t('price')}: {item.price}</S.Parag>
-               
-               {/*<S.AddButt >{t('add_butt')}
-              <AddCartIcon style={{position:'relative',top:'5px',fontSize:'25px'}}/>
-              </S.AddButt><br/> */}
-               
-               {(creator(item.creator)||admin)
+         
+         
+				  </S.StyledButtons>
+				  
+		{(creator(item.creator)||admin)
 				   
 				&&<><S.KingButt onClick={(e)=>
 					      delUnit(e, item._id)}>
@@ -61,7 +56,19 @@ return(<>
 				    <S.KingButt onClick={(e)=>handEdit(e, item)}>
 				            <EditIcon style={{fontSize:'30px',
 								              marginTop:'2px'}}/>
-	                </S.KingButt></>}
+	                </S.KingButt> </>}		  
+				  </>}
+            <br/>                   
+               <S.Title>{item.title.slice(0,12)}</S.Title>
+               <S.Parag>{t('category')}: {item.category?tc(item.category):'---'}</S.Parag>
+               <S.Parag>{t('type')}: {item.type?tt(item.type):'---'}</S.Parag>
+               <S.Parag>{t('price')}: {item.price}₴</S.Parag>
+               
+               {/*<S.AddButt >{t('add_butt')}
+              <AddCartIcon style={{position:'relative',top:'5px',fontSize:'25px'}}/>
+              </S.AddButt><br/> */}
+               
+               
               
 </S.Cell>
              </> )}

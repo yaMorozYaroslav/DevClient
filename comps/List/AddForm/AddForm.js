@@ -109,7 +109,7 @@ export function AddForm({setOpen, currItem, setCurrItem}){
 	        onChange={e=>setSource(
 				          {...source,
 						   price: Number(e.target.value)||0})}
-	                                               required/>$<br/>
+	                                               required/>₴<br/>
    <S.Selector>
       <label>{t('photo')}:&#160;</label>
 	  <S.PhotoBut htmlFor="input">{t('select')}</S.PhotoBut>
