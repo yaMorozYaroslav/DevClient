@@ -4,7 +4,7 @@ import * as S from './mail-form.styled'
 import {regionsGet, locationsGet, officesGet} from './requests'
 import axios from 'axios'
 import {sendEmail} from '../../../api.js'
-  
+  //text
    
 export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
 	const initialState = {user_name:'', user_email:'',
