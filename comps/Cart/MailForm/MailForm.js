@@ -43,15 +43,6 @@ export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
 	                                          locationsGet, 'locations')
 	const combLocat =(e)=> genericLocation(e, selected.locations,
 	                                                  officesGet, 'offices')
-    
-    //~ function combLocat(e){e.preventDefault();handChange(e);
-		     //~ const currRef = selected.locations.filter(x =>
-		             //~ x.Description === e.target.value).map(({Ref})=>Ref)
-		     //~ officesGet(currRef[0]).then(r=>{
-				 //~ console.log(r)
-				 //~ setSelected({...selected, offices: r.dataAll})
-				 //~ })
-		             //~ }
 
 		const onSendEmail = e => {
 			 e.preventDefault()
@@ -148,7 +139,11 @@ export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
 	           
 	     <br />
 	         <S.Textarea readOnly value={source.items} name='items' required/>
+	         
+	       <S.PayLink href='/payment'>
 	         <S.Button type='submit'>Place The Order</S.Button>
+	       </S.PayLink>
+	        
 	         <S.Button type="button" onClick={()=>setOpen(false)}>
 	                                                          Close</S.Button>
 	                 </S.Mailer></>                   

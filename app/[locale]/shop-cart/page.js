@@ -13,7 +13,7 @@ async function anyName() {
      "Ref" : ""
    }
     })      
-   //~ JSON.stringify({ time: new Date().toISOString() }),
+   //~ //JSON.stringify({ time: new Date().toISOString() }),
   }, { next: { tags: ['regions'], revalidate: 1000}}) 
   const data = await res.json()
   const regions = data.data.map(({
