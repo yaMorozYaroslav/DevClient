@@ -24,7 +24,7 @@ return(<>
 				                         onClick={()=>setOptions(true)}
                                          width={0} height={0} 
                                          priority={true}/>  }
-      {options && <><S.StyledButtons>
+      {options && <S.FourButtons><S.StyledButtons>
 				   
 				            
 	     <S.DetailsLink className='styledLink'
@@ -42,13 +42,12 @@ return(<>
               <AddCartIcon style={{position:'relative',
 				                   top:'5px',fontSize:'25px'}}/>
          </S.AddButt>
-         
-         
+	                
 				  </S.StyledButtons>
 				  
-		{(creator(item.creator)||admin)
+				  {(creator(item.creator)||admin)
 				   
-				&&<><S.KingButt onClick={(e)=>
+				&&<S.SuperButts><S.KingButt onClick={(e)=>
 					      delUnit(e, item._id)}>
 			                <OffIcon style={{fontSize:'30px', 
 								             marginTop:'2px'}}/>
@@ -56,18 +55,14 @@ return(<>
 				    <S.KingButt onClick={(e)=>handEdit(e, item)}>
 				            <EditIcon style={{fontSize:'30px',
 								              marginTop:'2px'}}/>
-	                </S.KingButt> </>}		  
-				  </>}
+	                </S.KingButt> </S.SuperButts>}	
+			  
+				  </S.FourButtons>}
             <br/>                   
                <S.Title>{item.title.slice(0,12)}</S.Title>
                <S.Parag>{t('category')}: {item.category?tc(item.category):'---'}</S.Parag>
                <S.Parag>{t('type')}: {item.type?tt(item.type):'---'}</S.Parag>
-               <S.Parag>{t('price')}: {item.price}₴</S.Parag>
-               
-               {/*<S.AddButt >{t('add_butt')}
-              <AddCartIcon style={{position:'relative',top:'5px',fontSize:'25px'}}/>
-              </S.AddButt><br/> */}
-               
+               <S.Parag>{t('price')}: {item.price} ₴</S.Parag>               
                
               
 </S.Cell>
