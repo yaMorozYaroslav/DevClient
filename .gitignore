@@ -1,5 +1,7 @@
 # testing of commenting
 /node_modules
+/certificates
+/tmp
 .next
 .env.local
 .pnp.*
@@ -10,6 +12,5 @@
 !.yarn/sdks
 !.yarn/versions
 
-/certificates
-/tmp
+
 
