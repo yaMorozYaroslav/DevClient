@@ -25,7 +25,7 @@ export const CheckOut = ({amount}: {amount: number}) => {
 	
 	console.log(amount)
 	const {push} = useRouter()
-	const router = window.location.host
+	const router = typeof window !== "undefined"?window.location.host:undefined
 	console.log(router)
 		            
 	
