@@ -23,10 +23,10 @@ export const CheckOut = ({amount}: {amount: number}) => {
 	
 	const t = useTranslations('List')
 	
-	console.log(amount)
+	//~ console.log(amount)
 	const {push} = useRouter()
 	const router = typeof window !== "undefined"?window.location.host:undefined
-	console.log(router)
+	//~ console.log(router)
 		            
 	
 	React.useEffect(()=>{
@@ -59,7 +59,7 @@ export const CheckOut = ({amount}: {amount: number}) => {
         //~ return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
         return_url: `https://${router}`
       },
-    }).then()
+    }).then(result => console.log(result))
     //~ }).then(result => {if(result.error){alert(error.message)}else{
 		                  //~ console.log(result);alert('text')}} );
     if (error) {
