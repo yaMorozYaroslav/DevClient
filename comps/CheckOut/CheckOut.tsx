@@ -41,6 +41,7 @@ export const CheckOut = ({amount}: {amount: number}) => {
 	const handleSubmit = async(event : React.FormEvent<HTMLFormElement>) => {
 		                       event.preventDefault();
 		                       setLoading(true)
+		                       alert(`Cool, you paid ${cartTotal}UAH!`)	
     if (!stripe || !elements) {
       return;
     }
@@ -59,19 +60,15 @@ export const CheckOut = ({amount}: {amount: number}) => {
         //~ return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
         return_url: `https://${router}`
       },
-    }).then()
+    }).then(function(result){if(result.error){alert('noText')}else{alert('text')}})
     //~ }).then(result => {if(result.error){alert(error.message)}else{
 		                  //~ console.log(result);alert('text')}} );
-    if (error) {
-		alert(error.message)
-      // This point is only reached if there's an immediate error when
-      // confirming the payment. Show the error to your customer (for example, payment details incomplete)
-      setErrorMessage(error.message);
+    if (!error) {
+	// nothing
     } else {
-      // The payment UI automatically closes with a success animation.
-      // Your customer is redirected to your `return_url`.
-    }
-    setLoading(false);
+            alert(error.message)
+            setErrorMessage(error.message)}
+        setLoading(false);
   };
   if (!clientSecret || !stripe || !elements) {return <button>loading</button>}
 		                       	
