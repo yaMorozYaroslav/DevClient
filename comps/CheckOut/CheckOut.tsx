@@ -59,9 +59,9 @@ export const CheckOut = ({amount}: {amount: number}) => {
         //~ return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
         return_url: `https://${router}`
       },
-    //~ }).then()
-    }).then(result => {if(result.error){alert(error.message)}else{
-		                  console.log(result);alert('text')}} );
+    }).then()
+    //~ }).then(result => {if(result.error){alert(error.message)}else{
+		                  //~ console.log(result);alert('text')}} );
     if (error) {
 		alert(error.message)
       // This point is only reached if there's an immediate error when
