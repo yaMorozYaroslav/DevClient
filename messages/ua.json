@@ -53,8 +53,8 @@
 	    "reset": "Скинути"    	
 	 },
  "AuthForm":{
-	 "sign_in": "Створити",
-	 "sign_up": "Вхід",
+	 "sign_in": "Вхід",
+	 "sign_up": "Створити",
 	 "e_mail": "E-mail",
 	 "p_mail": "Написати e-mail",
 	 "password":"Пароль",

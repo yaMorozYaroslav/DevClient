@@ -4,6 +4,7 @@ import * as S from './list.styled'
 import {Filter} from './Filter/Filter'
 import Box from '@mui/material/Box';
 import {AddForm} from './AddForm/AddForm'
+import {SpinZone} from '../../blocks/SpinZone'
 //~ import LinearProgress from '@mui/material/LinearProgress';
 
 import {useItemContext} from '../../context/items/ItemState'
@@ -79,7 +80,9 @@ return (<S.Container>
         {admin &&       
 			<S.AddAdmin onClick={()=>setOpen({...open, form: true})}>
 			                   {t('add_butt')}</S.AddAdmin>}
-        <S.NotLink onClick={()=>onMenu()}>{t('menu')}</S.NotLink>
+       
+     <SpinZone><S.NotLink onClick={()=>onMenu()}>
+                                  {t('menu')}</S.NotLink></SpinZone>      
       </S.ListButts> 
          
        {open.form &&

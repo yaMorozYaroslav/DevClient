@@ -19,4 +19,4 @@ export const Option = styled.option``
 export const Textarea = styled.textarea`display:none;width:70%;margin-left:14%;`
 export const Button = styled.button`font-size:25px;margin:5px;margin-bottom:20px;
                                     padding:5px;`
-export const PayLink = styled(Link)``
+//~ export const PayLink = styled(Link)``

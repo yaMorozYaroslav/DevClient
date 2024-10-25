@@ -4,6 +4,7 @@ import {SeedState} from '../../context/seeds/SeedState'
 import {QueryState} from '../../context/queries/QueryState'
 import {ItemState} from '../../context/items/ItemState'
 import {CartState} from '../../context/cart/CartState'
+import {LoadState} from '../../context/LoadState'
 
 import { Lora } from 'next/font/google'
 import {Header} from '../../comps/Header/Header'
@@ -57,8 +58,10 @@ let messages
        <UserState>
        <CartState>
        <QueryState>
+       <LoadState>
         <Header />
           {children}
+      </LoadState>
       </QueryState>
       </CartState>
       </UserState>

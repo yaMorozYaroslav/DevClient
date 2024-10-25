@@ -30,9 +30,8 @@ export const ItemLink = styled(Link)`${p=>p.$value&&'cursor:wait'};
                         @media (max-width: 600px) {margin-top:-120px;}
                         @media (max-width: 400px) {margin-top:-200px;}`
                         
-export const SeedLink = styled(Link)`cursor:${p=>p.$value?'wait':'pointer'};
-                                     grid-column:3/4;grid-row:3;
-                                     margin-top:-90px;font-size:28px;
+export const SeedLink = styled(Link)`grid-column:3/4;grid-row:3;
+                                         margin-top:-90px;font-size:28px;
                         @media (max-width: 600px) {margin-top:-120px;}
                         @media (max-width: 400px) {margin-top:-200px;}`
                         

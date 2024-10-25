@@ -39,7 +39,7 @@ export function AuthForm(){
 		
   return  <S.Container>
     <S.Form onSubmit={handSubmit} id='form'>
-     <S.Title>{registered?t("sign_up"):t("sign_in")}</S.Title>
+     <S.Title>{!registered?t("sign_up"):t("sign_in")}</S.Title>
 	 <S.Label>{t('e_mail')}:</S.Label>
 	 <S.Input name='email' placeholder={t('p_mail')}
 	          onChange={handChange} required/><br/>
@@ -60,7 +60,7 @@ export function AuthForm(){
 	</S.Form>
 	 <S.Toggler className='styledLink'
 	            onClick={()=>setRegistered(!registered)}>
-	                        {registered?t("sign_in")
+	                        {!registered?t("sign_in")
 								        :t("sign_up")}</S.Toggler>
 								        
 	  <S.StyledLink className='styledLink' href={'/'}>{t('menu')}</S.StyledLink>

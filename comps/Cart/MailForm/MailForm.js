@@ -4,15 +4,18 @@ import * as S from './mail-form.styled'
 import {regionsGet, locationsGet, officesGet} from './requests'
 import axios from 'axios'
 import {sendEmail} from '../../../api.js'
-  //text
+import {useRouter, usePathname} from 'next/navigation'
+
+import {useLocale} from 'next-intl'
    
-export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
+export const MailForm =({servData, setOpen, cartItems, 
+	                     clearCart, push, setTotal})=> {
 	const initialState = {user_name:'', user_email:'',
 		                 user_phone:'', delivery_method:'',
 		                 user_area:'', user_region:{},
 		                 user_location:'', post_office: '',
 		                 user_date:'', items:''}
-	
+		                 
     const [source, setSource] = React.useState(initialState)
 		                                        
 	const [selected, setSelected] = React.useState({regions: undefined,
@@ -20,6 +23,10 @@ export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
 		                                            offices: undefined })	 	                                       
 	//~ const form = React.useRef()
 	//~ console.log(selected.regions)
+	const locale = usePathname().slice(0,3)
+	const locale0 = useLocale()
+	console.log(locale)
+	
 	const handChange = (e) => setSource({...source, 
 		                               [e.target.name]: e.target.value})
 	const pickUp = source.delivery_method === 'pick up'
@@ -50,11 +57,18 @@ export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
 			 sendEmail(source).then((result) => console.log(result, source),
 			                    (error) => console.log(error))
 			     //~ e.target.reset()
-			     clearCart()
 		         localStorage.removeItem('cart')
 		         setOpen(false)
-		         push('/')       
-			}
+		         if (confirm('Would you like to pay online?')) {
+					                  push(`${locale}/payment`) 
+                 } else {
+                   alert('Thanks for your order, we will contact you soon!')
+			       clearCart()
+                   push('/')
+                   }
+               }
+		               
+			
 	
 	React.useEffect(()=>{
 	  //~ if(cartItems && source.items.length !== cartItems.length)
@@ -64,8 +78,7 @@ export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
 		},[])
   const HiddenOption = ({condition, text}) => 
                                         <S.Option hidden={condition.length}
-                                                  value='' 
-                                                  selected={!condition}
+                                                  value='1' 
                                                                     >{text}</S.Option>
 		//~ ref={form}
 	return  <><S.Mailer onSubmit={onSendEmail}>
@@ -78,10 +91,10 @@ export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
 	                        name='user_phone' required /><br/>
 
 	           
-	           <S.Select  onChange={handChange} value={source.delivery_method}
+	           <S.Select  onChange={handChange} defaultValue={source.delivery_method}
 	                      name='delivery_method' required>
-	        <HiddenOption condition={source.delivery_method} 
-	                      text='Choose Delivery Method' />
+	               <S.Option value={''} hidden={source.delivery_method.length} 
+	                      >Choose Delivery Method</S.Option>
 
 	               <S.Option value='pick up'>Pick Up</S.Option>
 	               <S.Option value='post office'>Post Office</S.Option>
@@ -140,9 +153,8 @@ export const MailForm =({servData, setOpen, cartItems, clearCart, push})=> {
 	     <br />
 	         <S.Textarea readOnly value={source.items} name='items' required/>
 	         
-	       <S.PayLink href='/payment'>
 	         <S.Button type='submit'>Place The Order</S.Button>
-	       </S.PayLink>
+	       
 	        
 	         <S.Button type="button" onClick={()=>setOpen(false)}>
 	                                                          Close</S.Button>

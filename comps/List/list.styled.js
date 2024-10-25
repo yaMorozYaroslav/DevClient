@@ -13,7 +13,7 @@ export const AddAdmin = styled.button`font-size:23px;border-style: dashed;paddin
                         @media (max-width: 600px) {font-size:20px;}
                         @media (max-width: 400px) {font-size:18px;padding:5px;
                                                    margin-left:-7px;}`
-export const NotLink = styled.p`margin:5px; cursor:pointer;
+export const NotLink = styled.p`margin:5px;
                                 font-size: 24px;padding: 15px;
                                 border:1px solid olive;
                                 color:black; background:white;

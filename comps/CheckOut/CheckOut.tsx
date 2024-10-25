@@ -4,7 +4,16 @@ import React from 'react'
 import * as S from './check-out.styled'
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js'
 
+import {useRouter, usePathname} from 'next/navigation'
+import {useTranslations} from 'next-intl'
+
+import {useCartContext} from '../../context/cart/CartState'
+import {SpinZone} from '../../blocks/SpinZone'
+
 export const CheckOut = ({amount}: {amount: number}) => {
+//~ export const CheckOut = () => {
+	const {cartTotal, clearCart} = useCartContext()
+	
 	const stripe = useStripe();
 	const elements = useElements();
 	
@@ -12,14 +21,19 @@ export const CheckOut = ({amount}: {amount: number}) => {
 	const [clientSecret, setClientSecret] = React.useState('')
 	const [loading, setLoading] = React.useState(false)
 	
-	function convertToSubcurrency(amount, factor = 100){
-		            return Math.round(amount * factor)}
+	const t = useTranslations('List')
+	
+	console.log(amount)
+	const {push} = useRouter()
+	const router = window.location.host
+	console.log(router)
+		            
 	
 	React.useEffect(()=>{
 		fetch(`/api/create-payment-intent`, {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({ amount: convertToSubcurrency(amount)})
+			body: JSON.stringify({ amount: amount})
 			})
 			.then((res) => res.json())
 			.then((data) => setClientSecret(data.clientSecret))
@@ -42,10 +56,14 @@ export const CheckOut = ({amount}: {amount: number}) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        //~ return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        return_url: `https://${router}`
       },
-    });
+    }).then(alert(`Congratualtions!\nYou paid ${amount}CAD`))
+    //~ }).then(result => {if(result.error){alert(error.message)}else{
+		                  //~ console.log(result);alert('text')}} );
     if (error) {
+		alert(error.message)
       // This point is only reached if there's an immediate error when
       // confirming the payment. Show the error to your customer (for example, payment details incomplete)
       setErrorMessage(error.message);
@@ -53,20 +71,21 @@ export const CheckOut = ({amount}: {amount: number}) => {
       // The payment UI automatically closes with a success animation.
       // Your customer is redirected to your `return_url`.
     }
-
     setLoading(false);
   };
   if (!clientSecret || !stripe || !elements) {return <button>loading</button>}
 		                       	
-	return (<form onSubmit={handleSubmit}>
+	return (<><form onSubmit={handleSubmit}>
 
 	         {clientSecret && <S.Container>
 				                     <PaymentElement />
 				              </S.Container>}
 	         {errorMessage && <div>{errorMessage}</div>}
 	         <button style={{marginTop: '120px'}}>
-	           {!loading ? `Pay $${amount}` : "Processing..."}
+	           {!loading ? `Pay $${amount / 100} (${cartTotal}₴) ` : "Processing..."}
 	         </button>	
-		    </form>)
+		    </form>
+		    <SpinZone><S.RealLink href={'/'}>
+                                  {t('menu')}</S.RealLink></SpinZone></>) 
 	}
 	

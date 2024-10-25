@@ -10,9 +10,9 @@ export const Cart =(servData)=> {
 	
 	const t = useTranslations('First')
 	const tc = useTranslations('Cart')
-	const {cartItems, increase, decrease, 
+	const {cartItems, increase, decrease, setTotal, 
 		              removeFromCart, clearCart} = useCartContext()
-		              //~ console.log(servData)
+  
 	const [open, setOpen] = React.useState(false)
 	
 	const {push} = useRouter()
@@ -26,13 +26,13 @@ export const Cart =(servData)=> {
 	const remover = (e, id) => {e.preventDefault()
 		                        removeFromCart(id)
 		                     if(cartItems.length === 1)cleaner()}
-		
 	function counter(){
-		//~ console.log(cartItems)
 		let total = cartItems.reduce((accum, item) => 
 		               {return accum += (item.price * item.quantity)},0)
 		return total
 		}
+    
+	function onPurchase(){setTotal(counter());setOpen(true);}
 
 	return <S.Container>	
 	
@@ -60,13 +60,14 @@ export const Cart =(servData)=> {
 	    </S.CartList>
 		      
 		    {open && <MailForm servData={servData.servData}
-				               setOpen={setOpen} 
+				               setOpen={setOpen} push={push}
 				               cartItems={cartItems}
-				               clearCart={clearCart} push={push}/>}
+				               clearCart={clearCart} 
+				               setTotal={setTotal}/>}
 	                 
 	         <S.CartButts>
 	             <S.Total>{tc('total')}: {counter()}</S.Total>
-		          <S.Button onClick={()=>setOpen(true)}>
+		          <S.Button onClick={onPurchase}>
 		                              {tc('buy_items')}</S.Button>
 		          <S.Button onClick={cleaner}>
 		                              {tc('clear_cart')}</S.Button><br/>

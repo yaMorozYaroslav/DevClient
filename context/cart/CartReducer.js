@@ -1,5 +1,5 @@
 import {REMOVE_ITEM, ADD_TO_CART, INCREASE,
-               DECREASE, FROM_LOCALE, CLEAR,} from "./CartTypes";
+        DECREASE, FROM_LOCALE, CLEAR, SET_TOTAL} from "./CartTypes";
 
 
 const CartReducer = (state, action) => {
@@ -53,6 +53,10 @@ const CartReducer = (state, action) => {
       return {
         cartItems: []
       };
+    case SET_TOTAL:
+      return { 
+		 ...state, cartTotal: action.payload
+		  }
 
     default:
       return state
