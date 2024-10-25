@@ -59,7 +59,7 @@ export const CheckOut = ({amount}: {amount: number}) => {
         //~ return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
         return_url: `https://${router}`
       },
-    }).then(result => {console.log(result)})
+    }).then(console.log('text'))
     //~ }).then(result => {if(result.error){alert(error.message)}else{
 		                  //~ console.log(result);alert('text')}} );
     if (error) {
