@@ -9,7 +9,7 @@ export const LoadState = ({children}) => {
 	
 	//~ const switchLoad = () => {setLoading(!loading)}
 	
-	return (<LoadContext.Provider value={loading, setLoading}>
+	return (<LoadContext.Provider value={{loading, setLoading}}>
 	                                   {children}</LoadContext.Provider>)
 	}
 	
